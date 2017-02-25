@@ -1,6 +1,6 @@
-## SDMGroup
+### SDMGroup
 
-Group of discussion of SDM/ENM
+Discussion group of Species Distribution Models/Ecological Niche Modeling
 
 Members
 **Maurício Humberto Vancine**
