@@ -1,11 +1,12 @@
-### SDMGroup
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
 
-Discussion group of Species Distribution Models/Ecological Niche Modeling
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
 
-Members
-- name: Maurício Vancine
-  affiliation: UNESP-Rio Claro
-  github: mauricio.vancine
-  interests:
-    - Programming
-    - Open Science
+</body>
+</html>
