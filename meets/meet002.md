@@ -5,6 +5,7 @@
 ### Dia 002 - 02/03/2017
 
 ### Resumo
+- Apresentação dos sites das bases de dados de ocorrências e variáveis
 - Discussão sobre os problemas das bases de dados
 - Discussão sobre os problemas de poucos pontos de ocorrência
 - Apresentações do GitHub
