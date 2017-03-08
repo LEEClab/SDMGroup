@@ -6,4 +6,4 @@
 
   **Formação**: Ecólogo - UNESP-Rio Claro; Mestrando em Zoologia - UNESP-Rio Claro
   
-  **Interesse**: Aprender
+  **Interesses**: Anfíbios, Ecologia da Paisagem, mudanças climáticas
