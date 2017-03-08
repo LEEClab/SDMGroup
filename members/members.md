@@ -2,7 +2,7 @@
 
 ## Membros 
 
-- Maurício Humberto Vancine ![Logo do R](http://developer.r-project.org/Logo/Rlogo-5.png)
+- Maurício Humberto Vancine ![test](https://github.com/favicon.ico | width=48)
 
   **Formação**: Ecólogo - UNESP-Rio Claro; Mestrando em Zoologia - UNESP-Rio Claro
   
