@@ -18,6 +18,6 @@
 - van Proosdij, M.S.M. Sosef, J.J. Wieringa, N. Raes. 2015. Minimum required number of specimen records to develop accurate species distribution models. Ecography 38: 1–11.
 
 ### Vídeo
-- GitHub
+- Git e Github para iniciantes
 
   https://www.youtube.com/watch?v=UMhskLXJuq4&t=1747s
