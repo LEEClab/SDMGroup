@@ -1,4 +1,0 @@
-# Occurrence Group
-
-## Members
-
