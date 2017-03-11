@@ -27,3 +27,4 @@
 - Soberoón, J., Nakamura, M. 2009. Niches and distributional areas: Concepts, methods, and assumptions. PNAS, 106: 19644-19650. 
 - Barve N. et al. 2011. The crucial role of the accessible area in ecological niche modeling and species distribution modeling. Ecol. Model. 222: 1810–1819.
 - Jiménez-Valverde, A., A. T. Peterson, J. Soberón, J. Overton, P. Aragón, and J. M. Lobo. 2011. Use of niche models in invasive species risk assessments. Biological Invasions 13: 2785–2797.
+- Hortal, J., Lobo, J. M., Jiménez-Valverde, A. 2012. Basic Questions in Biogeography and the (Lack of) Simplicity of Species Distributions: Putting Species Distribution Models in the Right Place. Natureza & Conservação, 10: 108-118.
