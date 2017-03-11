@@ -5,7 +5,7 @@
 ### Dia 004 - 16/03/2017
 
 ### Resumo
-- Discussão sobre os grupos de trabalho
+- 
 
 ### Artigos
 - 
