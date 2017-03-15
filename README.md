@@ -7,4 +7,4 @@ Currently the number of papers using Species Distribution Modeling / Ecological 
 The group is placed at São Paulo State University, UNESP, in Rio Claro city, São Paulo, Brazil. We have make weekly meetings, lasting 3 hours, to discuss subjects about Species Distribution Models/Ecological Niche Modeling like dataset of occurrences and variables, kinds of variables, extension and resolution of variables, algorithms, software and mainly discuss the problems associated to building of prediction models of participants’ projects. 
 
 ## Group meet
-The meet occur all ###**thursday**, at ###**10 h - 12 h AM**, in Department of Ecology, UNESP-Rio Claro.
+The meet occur all **thursday**, at **10 h - 12 h AM**, in Department of Ecology, UNESP-Rio Claro.
