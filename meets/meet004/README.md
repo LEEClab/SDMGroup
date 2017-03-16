@@ -11,10 +11,11 @@
 - Hipóteses a se testar ou criar hipóteses?
 - GCMs (Global Circulation Models)
 - [GitHub Desktop](https://desktop.github.com)
+- Seleção de variáveis
 - Tentativa de rodar os ENMs...
 
 ### Artigos
-- 
+- Araújo, M. B., New M. 2007. Ensemble forecasting of species distributions. Trends in Ecology & Evolution 22(1):42-47.
 
 ## Sites
 
