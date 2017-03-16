@@ -10,7 +10,7 @@
 - Apresentação do script para seleção de variáveis, construir os modelos e os *ensembles*
 - Hipóteses a se testar ou criar hipóteses?
 - GCMs (Global Circulation Models)
-- GitHub Desktop ()
+- [GitHub Desktop](https://desktop.github.com)
 - Tentativa de rodar os ENMs...
 
 ### Artigos
