@@ -34,7 +34,7 @@ setwd("D:/github/SDMGroup/meets/meet004/_saidas_enm")
 asc <- list.files(pattern = ".asc")
 asc
 
-enm <- raster("CCSM_Bioclim_0k_B.balansae1.asc")
+enm <- raster("CCSM_Bioclim_0k_Aralia_warmingiana1.asc")
 enm
 plot(enm)
 
@@ -45,14 +45,14 @@ txt
 eva <- lapply(txt, read.table)
 eva
 names(eva) <- txt
-eva[[1]]
+eva
 
 ###-----------------------------------------------------------------------------------------###
 
 ## frequency ensemble 
 # lists
 # species
-sp <- list("B.balansae")
+sp <- list("Aralia_warmingiana", "Cavanillesia_umbellata")
 sp
 
 # gcms
