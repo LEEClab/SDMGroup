@@ -4,7 +4,7 @@
 # Maurício Humberto Vancine - mauricio.vancine@gmail.com
 
 ###-----------------------------------------------------------------------------------------###
-### script construir modelos de nicho ecologico ### 
+### script build enm ### 
 ###-----------------------------------------------------------------------------------------###
 
 # 1. limpara a memoria e carregar os pacotes 
@@ -20,9 +20,9 @@ memory.limit(size = 17500000000000)
 library(raster) # manejo de arquivos sig 
 library(rgdal) # manejo de arquivos sig
 library(dismo) # construir enms
-library(gam) # 
-library(randomForest) # 
-library(kernlab) # algoritmos svm
+library(gam) # construir enms
+library(randomForest) # construir enms
+library(kernlab) # algoritmo svm
 library(rJava) # funcionamento do java
 library(vegan) # diversas analises multivariadas
 
@@ -36,11 +36,10 @@ search()
 setwd("D:/github/SDMGroup/meets/meet004/occurrences")
 
 # importando os pontos de ocorrencia 
-points <- read.table("Bromelia_balansae.txt", h = T)
+points <- read.table("pablo_plants.txt", h = T)
 head(points, 10)
 
-po <- shapefile("Bromelia_balansae.shp")
-plot(po, pch = 20, axes = T)
+plot(points[, 2], points[, 3])
 
 # diretorio da pasta de dados de entrada
 setwd("D:/github/SDMGroup/meets/meet004/selection")
@@ -59,15 +58,15 @@ asc.21k <- grep("21k", asc, value = T)
 asc.21k
 
 env.stack.0k <- stack(asc.0k)
-names(env.stack.0k) <- paste0("bio", c("01", "02", "04", "16", "17"))
+names(env.stack.0k) <- paste0("bio", c("01", "02", "03", "16", "17"))
 env.stack.0k
 
 env.stack.6k <- stack(asc.6k)
-names(env.stack.6k) <- paste0("bio", c("01", "02", "04", "16", "17"))
+names(env.stack.6k) <- paste0("bio", c("01", "02", "03", "16", "17"))
 env.stack.6k
 
 env.stack.21k <- stack(asc.21k)
-names(env.stack.21k) <- paste0("bio", c("01", "02", "04", "16", "17"))
+names(env.stack.21k) <- paste0("bio", c("01", "02", "03", "16", "17"))
 env.stack.21k
 
 plot(env.stack.0k)
@@ -75,18 +74,18 @@ plot(env.stack.6k)
 plot(env.stack.21k)
 
 plot(env.stack.0k[[1]])
-plot(po, pch = 20, add = T)
+points(points[, 2], points[, 3], col = c(), pch = 20, add = T)
 
 
 # extraindo os valores de cada celula e adicionando as coordenadas
 values <- values(env.stack.0k)[, 1]
-head(values, 100)
+head(values, 10)
 
 id <- 1:ncell(env.stack.0k)
-head(id, 100)
+head(id, 10)
 
 coord <- xyFromCell(env.stack.0k, id)
-coord
+head(coord, 10)
 
 plot(env.stack.0k[[1]])
 points(coord, pch = "o", cex = 0.1)
@@ -207,7 +206,7 @@ for(r in 1:5){	# numero de replicas
 
 
 ## SVM	
-	SVM <- ksvm(pb ~ bio01 + bio02 + bio04 + bio16 + bio17, data = train)	
+	SVM <- ksvm(pb ~ bio01 + bio02 + bio03 + bio16 + bio17, data = train)	
 
  writeRaster(predict(env.stack.0k, SVM), paste(AOGCM, "_SVM_0k_", id.specie, r, ".asc", sep = ""), format = "ascii") 
  writeRaster(predict(env.stack.6k, SVM), paste(AOGCM, "_SVM_6k_", id.specie, r, ".asc", sep = ""), format = "ascii")

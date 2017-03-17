@@ -55,6 +55,7 @@ names(pres.s)
 
 plot(pres.s)
 plot(pres.s[[1]])
+plot(pres.s$pres_bio01)
 
 # bioclim - descricao
 # http://www.worldclim.org/bioclim
@@ -122,7 +123,7 @@ ifelse(corr >= 0.7, 1, 0) # 1 ou 0
 # exportar tabela com a correlacao
 write.table(abs(round(corr, 2)), "cor_pres.xls", row.names = T, sep = "\t")
 write.table(ifelse(corr >= 0.7, "Sim", "Não"), "cor_pres_afirmacao.xls", row.names = T, 
-		sep = "\t")
+		sep = "\t", col = ifelse(corr >= 0.7, "red", "blue")))
 
 # plot da correlacao
 corrplot(corr, type = "lower", diag = F, tl.srt = 45, mar = c(3, 0.5, 2, 1),
@@ -139,7 +140,7 @@ corrplot(-1 * (abs(corr)), type = "lower", diag = F, tl.srt = 45, mar = c(3, 0.5
 # exportar figura na pasta do diretorio
 tiff("cor_ma.tif", width = 18, height = 18, units = "cm", res = 300, compression = "lzw")
 
-corrplot(corr, type = "lower", diag = F, tl.srt = 45, mar = c(3, 0.5, 2, 1),
+?corrplot(corr, type = "lower", diag = F, tl.srt = 45, mar = c(3, 0.5, 2, 1),
 	   title = "Correlações entre variáveis Bioclimáticas")
 
 dev.off()
@@ -287,42 +288,42 @@ am.loadings
 abs(round(am.loadings, 2))
 
 # exportar tabela dos resultados
-write.table(abs(round(am.loadings, 2)), "as_loadings.xls", row.names = T, sep = "\t")
+write.table(data.frame(abs(round(am.loadings, 2)), bio = , "as_loadings.xls", row.names = T, sep = "\t")
 
 # bios escolhidas
-# bio01, bio02, bio04, bio16, bio17
+# bio01, bio02, bio03, bio16, bio17
 
 # significado das bios
-# BIO1 = Temperatura media anual
-# BIO2 = Variacao da media diurna (media por mes (temp max - temp min))
-# BIO3 = Isotermalidade (BIO2/BIO7) (* 100)
-# BIO4 = Sazonalidade da temperatura (desvio padrao deviation *100)
-# BIO5 = Temperatura maxima do mes mais quente
-# BIO6 = Temperatura minima do mes mais frio
-# BIO7 = Variacao da temperatura anual (BIO5-BIO6)
-# BIO8 = Temperatura media do trimestre mais chuvoso
-# BIO9 = Temperatura media do trimestre mais seco
-# BIO10 = Temperatura media do trimestre mais quente
-# BIO11 = Temperatura media do trimestre mais frio
-# BIO12 = Precipitacao anual
-# BIO13 = Precipitacao do mes mais chuvoso
-# BIO14 = Precipitacao do mes mais seco
-# BIO15 = Sazonalidade da precipitacao (coeficiente de variacao)
-# BIO16 = Precipitacao do trimestre mais chuvoso
-# BIO17 = Precipitacao do trimestre mais seco
-# BIO18 = Precipitacao do trimestre mais quente
-# BIO19 = Precipitacao do trimestre mais frio
+bio <- c("BIO1 = Temperatura media anual",
+	   "BIO2 = Variacao da media diurna (media por mes (temp max - temp min))",
+	   "BIO3 = Isotermalidade (BIO2/BIO7) (* 100)",
+"BIO4 = Sazonalidade da temperatura (desvio padrao deviation *100)",
+"BIO5 = Temperatura maxima do mes mais quente",
+"BIO6 = Temperatura minima do mes mais frio",
+"BIO7 = Variacao da temperatura anual (BIO5-BIO6)",
+"BIO8 = Temperatura media do trimestre mais chuvoso",
+"BIO9 = Temperatura media do trimestre mais seco",
+"BIO10 = Temperatura media do trimestre mais quente",
+"BIO11 = Temperatura media do trimestre mais frio",
+"BIO12 = Precipitacao anual",
+"BIO13 = Precipitacao do mes mais chuvoso",
+"BIO14 = Precipitacao do mes mais seco",
+"BIO15 = Sazonalidade da precipitacao (coeficiente de variacao)",
+"BIO16 = Precipitacao do trimestre mais chuvoso",
+"BIO17 = Precipitacao do trimestre mais seco",
+"BIO18 = Precipitacao do trimestre mais quente",
+"BIO19 = Precipitacao do trimestre mais frio")
 
 ###-----------------------------------------------------------------------------------------###
 
 # 8. exportar as variaveis escolhidas
 # bios escolhidas
-# bio01, bio02, bio04, bio16, bio17
+# bio01, bio02, bio03, bio16, bio17
 
 pres.s
 names(pres.s)
 
-lista <- c(01, 02, 04, 16, 17)
+lista <- c(01, 02, 03, 16, 17)
 
 pres.s[[01]]
 
