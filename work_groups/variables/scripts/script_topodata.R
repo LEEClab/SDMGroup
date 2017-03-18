@@ -65,8 +65,8 @@ for(j in al){
     else{
       download(paste0("http://www.dsr.inpe.br/topodata/data/geotiff/", j, ".zip"), 
       paste0(j, ".zip"), mode = "wb")
-      unzip(j)
-      unlink(j)}}
+      unzip(paste0(j, ".zip"))
+      unlink(paste0(j, ".zip"))}}
   
 
 ###-----------------------------------------------------------------------------###
@@ -103,8 +103,8 @@ for(j in de){
     else{
       download(paste0("http://www.dsr.inpe.br/topodata/data/geotiff/", j, ".zip"), 
       paste0(j, ".zip"), mode = "wb")
-      unzip(j)
-      unlink(j)}}
+      unzip(paste0(j, ".zip"))
+      unlink(paste0(j, ".zip"))}}
 
 ###-----------------------------------------------------------------------------###
 
@@ -141,8 +141,8 @@ for(j in as){
     else{
       download(paste0("http://www.dsr.inpe.br/topodata/data/geotiff/", j, ".zip"), 
       paste0(j, ".zip"), mode = "wb")
-      unzip(j)
-      unlink(j)}}
+      unzip(paste0(j, ".zip"))
+      unlink(paste0(j, ".zip"))}}
 
 ###-----------------------------------------------------------------------------###
 
