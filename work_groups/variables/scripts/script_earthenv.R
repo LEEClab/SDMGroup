@@ -1,7 +1,7 @@
 ### script download of data bases for enm ###
 
 # Maurício Humberto Vancine - mauricio.vancine@gmail.com
-# 08/02/2017
+# 20/03/2017
 
 ###------------------------------------------------------------------------------###
 
@@ -24,6 +24,8 @@ library(rvest)
 
 # directory
 setwd("D:/environmental_data/earthenv")
+dir.create("heterogeneity")
+setwd("./heterogeneity")
 
 # list of url
 url <- "http://www.earthenv.org/texture"
@@ -35,41 +37,26 @@ pg
 link <- as.list(html_attr(html_nodes(pg, "a"), "href"))
 link
 
-tif <- link[grep(".tif", link)]
+tif <- grep(".tif", link, value = T)
 tif
 
-names <- as.character(tif)
-names
-
-names.s <- sub("http://data.earthenv.org/habitat_heterogeneity/", "", names)
-names.s
-
 # download
-for(i in list){
-  download(paste0("https://cloud.s3it.uzh.ch:8080/v1/AUTH_5218a3a69ebf4a059c5a95889c5ee56e/CHELSA/", i), 
-  paste0(i), mode = "wb")
-  unzip(i)
-  unlink(i)}
+es <- c("/1km/", "/5km/", "/25km/")
+di <- c("01km", "05km", "25km")
 
-# check download and download errors
-li <- sub(".tif", "", list.files())
-li
+for(i in 1:length(es)){
+  li <- grep(es[i], tif, value = T)
+  na <- sub(paste0("http://data.earthenv.org/habitat_heterogeneity", es[i]), "", li)
+ 
+  dir.create(di[i])
+  setwd(paste0("./", di[i]))
 
-ch <- sub(".zip", "", list)
-ch
+	for(j in 1:length(li)){
+  	  download(li[j], na[j], mode = "wb")
+  	  unzip(na[j])
+  	  unlink(na[j])}
 
-for(j in ch){
-  if(j %in% li){}
-      else{print(j)}}
-
-for(j in ch){
-  if(j %in% li){}
-    else{
-      download(paste0("https://cloud.s3it.uzh.ch:8080/v1/AUTH_5218a3a69ebf4a059c5a95889c5ee56e/CHELSA/", j, ".zip"), 
-      paste0(j, ".zip"), mode = "wb")
-      unzip(j)
-      unlink(j)}}
-
+  setwd("..")}
 
 ###------------------------------------------------------------------------------###
 
@@ -77,7 +64,9 @@ for(j in ch){
 # 2. Global 1-km Consensus Land Cover
 
 # directory
-setwd("")
+setwd("..")
+dir.create("land_cover")
+setwd("./land_cover")
 
 # list of url
 url <- "http://www.earthenv.org/landcover"
@@ -89,22 +78,27 @@ pg
 link <- as.list(html_attr(html_nodes(pg, "a"), "href"))
 link
 
-tif <- link[grep(".tif", link)]
+tif <- grep(".tif", link, value = T)
 tif
 
-names <- as.character(tif)
-names
-
-names.s <- sub("http://data.earthenv.org/habitat_heterogeneity/", "", names)
-names.s
-
 # download
-for(i in 1:length(zip)){
-  download(zip[i], names.s[i], mode = "wb")} 
+di <- c("with_DISCover", "without_DISCover")
+di
 
-# unzip the archives
-list <- list.files(patt = ".zip")
-list
+for(i in 1:length(di)){
+  li <- grep(di[i], tif, value = T)
+  na <- sub(paste0("http://data.earthenv.org/consensus_landcover/", di[i], "/"), "", li)
+
+  dir.create(di[i])
+  setwd(paste0("./", di[i]))
+
+	for(j in 1:length(li)){
+  	  download(li[j], na[j], mode = "wb")
+  	  unzip(na[j])
+  	  unlink(na[j])}
+
+  setwd("..")}
+
 
 ###------------------------------------------------------------------------------###
 
@@ -112,7 +106,9 @@ list
 # 3. Global 1-km Cloud Cover
 
 # directory
-setwd("")
+setwd("..")
+dir.create("cloud")
+setwd("./cloud")
 
 # list of url
 url <- "http://www.earthenv.org/cloud"
@@ -124,25 +120,17 @@ pg
 link <- as.list(html_attr(html_nodes(pg, "a"), "href"))
 link
 
-tif <- link[grep(".tif", link)]
+tif <- grep(".tif", link, value = T)
 tif
 
-names <- as.character(tif)
-names
-
-names.s <- sub("http://data.earthenv.org/cloud/", "", names)
-names.s
+na <- sub("http://data.earthenv.org/cloud/", "", tif)
+na
 
 # download
-for(i in 1:length(zip)){
-  download(zip[i], names.s[i], mode = "wb")} 
-
-# unzip the archives
-list <- list.files(patt = ".zip")
-list
-
-for(i in list){
-  unzip(i, exdir = "cloud")}
+for(i in 1:length(tif)){
+  download(tif[i], na[i], mode = "wb")
+  unzip(na[i])
+  unlink(na[i])}
 
 
 ###------------------------------------------------------------------------------###
@@ -150,7 +138,9 @@ for(i in list){
 # 4. Near-global environmental information for freshwater ecosystems in 1km resolution
 
 # directory
-setwd("")
+setwd("..")
+dir.create("streams")
+setwd("./streams")
 
 # list of url
 url <- "http://www.earthenv.org/streams"
@@ -162,25 +152,16 @@ pg
 link <- as.list(html_attr(html_nodes(pg, "a"), "href"))
 link
 
-nc <- link[grep("//data", link)]
+nc <- grep(".nc", link, value = T)
 nc
 
-names <- as.character(tif)
-names
-
-names.s <- sub("http://data.earthenv.org/habitat_heterogeneity/", "", names)
-names.s
+na <- sub("http://data.earthenv.org/streams/", "", tif)
+na
 
 # download
-for(i in 1:length(zip)){
-  download(zip[i], names.s[i], mode = "wb")} 
-
-# unzip the archives
-list <- list.files(patt = ".zip")
-list
-
-for(i in list){
-  unzip(i, exdir = "present")}
-
+for(i in 1:length(nc)){
+  download(nc[i], na[i], mode = "wb")
+  unzip(na[i])
+  unlink(na[i])}
 
 ###------------------------------------------------------------------------------###
