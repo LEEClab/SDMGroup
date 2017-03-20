@@ -34,15 +34,18 @@ url
 pg <- read_html(url)
 pg
 
-link <- as.list(html_attr(html_nodes(pg, "a"), "href"))
-link
+li <- as.list(html_attr(html_nodes(pg, "a"), "href"))
+li
 
-tif <- grep(".tif", link, value = T)
+tif <- grep(".tif", li, value = T)
 tif
 
 # download
 es <- c("/1km/", "/5km/", "/25km/")
+es
+
 di <- c("01km", "05km", "25km")
+di
 
 for(i in 1:length(es)){
   li <- grep(es[i], tif, value = T)
@@ -52,9 +55,7 @@ for(i in 1:length(es)){
   setwd(paste0("./", di[i]))
 
 	for(j in 1:length(li)){
-  	  download(li[j], na[j], mode = "wb")
-  	  unzip(na[j])
-  	  unlink(na[j])}
+  	  download(li[j], na[j], mode = "wb")}
 
   setwd("..")}
 
@@ -75,10 +76,10 @@ url
 pg <- read_html(url)
 pg
 
-link <- as.list(html_attr(html_nodes(pg, "a"), "href"))
-link
+li <- as.list(html_attr(html_nodes(pg, "a"), "href"))
+li
 
-tif <- grep(".tif", link, value = T)
+tif <- grep(".tif", li, value = T)
 tif
 
 # download
@@ -93,9 +94,7 @@ for(i in 1:length(di)){
   setwd(paste0("./", di[i]))
 
 	for(j in 1:length(li)){
-  	  download(li[j], na[j], mode = "wb")
-  	  unzip(na[j])
-  	  unlink(na[j])}
+  	  download(li[j], na[j], mode = "wb")}
 
   setwd("..")}
 
@@ -117,10 +116,10 @@ url
 pg <- read_html(url)
 pg
 
-link <- as.list(html_attr(html_nodes(pg, "a"), "href"))
-link
+li <- as.list(html_attr(html_nodes(pg, "a"), "href"))
+li
 
-tif <- grep(".tif", link, value = T)
+tif <- grep(".tif", li, value = T)
 tif
 
 na <- sub("http://data.earthenv.org/cloud/", "", tif)
@@ -128,9 +127,7 @@ na
 
 # download
 for(i in 1:length(tif)){
-  download(tif[i], na[i], mode = "wb")
-  unzip(na[i])
-  unlink(na[i])}
+  download(tif[i], na[i], mode = "wb")}
 
 
 ###------------------------------------------------------------------------------###
@@ -149,19 +146,17 @@ url
 pg <- read_html(url)
 pg
 
-link <- as.list(html_attr(html_nodes(pg, "a"), "href"))
-link
+li <- as.list(html_attr(html_nodes(pg, "a"), "href"))
+li
 
-nc <- grep(".nc", link, value = T)
+nc <- grep(".nc", li, value = T)
 nc
 
-na <- sub("http://data.earthenv.org/streams/", "", tif)
+na <- sub("http://data.earthenv.org/streams/", "", nc)
 na
 
 # download
 for(i in 1:length(nc)){
-  download(nc[i], na[i], mode = "wb")
-  unzip(na[i])
-  unlink(na[i])}
+  download(nc[i], na[i], mode = "wb")}
 
 ###------------------------------------------------------------------------------###
