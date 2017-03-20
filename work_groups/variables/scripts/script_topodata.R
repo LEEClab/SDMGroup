@@ -31,11 +31,47 @@ pg
 link <- as.list(html_attr(html_nodes(pg, "a"), "href"))
 link
 
+topo <- grep(".zip", link, value = T)
+topo
+
 ###-----------------------------------------------------------------------------###
 
+# topodata
+setwd("..")
+dir.create("topodata")
+setwd("./topodata")
+getwd()
+
+for(i in topo){
+  download(paste0("http://www.dsr.inpe.br/topodata/data/geotiff/", i), paste0(i), 
+  mode = "wb")
+  unzip(i)
+  unlink(i)}
+
+# check download and download errors
+li <- sub(".tif", "", list.files())
+li
+
+to <- sub(".zip", "", topo)
+to
+
+for(j in to){
+  if(j %in% li){}
+      else{print(j)}}
+
+for(j in to){
+  if(j %in% li){}
+    else{
+      download(paste0("http://www.dsr.inpe.br/topodata/data/geotiff/", j, ".zip"), 
+      paste0(j, ".zip"), mode = "wb")
+      unzip(j)
+      unlink(j)}}
+
+
+###-----------------------------------------------------------------------------###
 
 # altitude
-alt <- link[grep("ZN", link)]
+alt <- grep("ZN", link, value = T)
 alt
 
 # download
@@ -65,8 +101,8 @@ for(j in al){
     else{
       download(paste0("http://www.dsr.inpe.br/topodata/data/geotiff/", j, ".zip"), 
       paste0(j, ".zip"), mode = "wb")
-      unzip(paste0(j, ".zip"))
-      unlink(paste0(j, ".zip"))}}
+      unzip(j)
+      unlink(j)}}
   
 
 ###-----------------------------------------------------------------------------###
@@ -77,8 +113,9 @@ dec <- link[grep("SN", link)]
 dec
 
 # download
-dir.create("altitude")
-setwd("./altitude")
+setwd("..")
+dir.create("declividade")
+setwd("./declividade")
 getwd()
 
 for(i in dec){
