@@ -25,7 +25,7 @@ library(rvest)
 # directory
 setwd("D:/environmental_data/earthenv")
 dir.create("heterogeneity")
-setwd("./heterogeneity")
+setwd("heterogeneity")
 
 # list of url
 url <- "http://www.earthenv.org/texture"
@@ -34,10 +34,10 @@ url
 pg <- read_html(url)
 pg
 
-li <- as.list(html_attr(html_nodes(pg, "a"), "href"))
-li
+link <- as.list(html_attr(html_nodes(pg, "a"), "href"))
+link
 
-tif <- grep(".tif", li, value = T)
+tif <- grep(".tif", link, value = T)
 tif
 
 # download
@@ -52,7 +52,7 @@ for(i in 1:length(es)){
   na <- sub(paste0("http://data.earthenv.org/habitat_heterogeneity", es[i]), "", li)
  
   dir.create(di[i])
-  setwd(paste0("./", di[i]))
+  setwd(di[i])
 
 	for(j in 1:length(li)){
   	  download(li[j], na[j], mode = "wb")}
@@ -67,7 +67,7 @@ for(i in 1:length(es)){
 # directory
 setwd("..")
 dir.create("land_cover")
-setwd("./land_cover")
+setwd("land_cover")
 
 # list of url
 url <- "http://www.earthenv.org/landcover"
@@ -76,10 +76,10 @@ url
 pg <- read_html(url)
 pg
 
-li <- as.list(html_attr(html_nodes(pg, "a"), "href"))
-li
+link <- as.list(html_attr(html_nodes(pg, "a"), "href"))
+link
 
-tif <- grep(".tif", li, value = T)
+tif <- grep(".tif", link, value = T)
 tif
 
 # download
@@ -91,7 +91,7 @@ for(i in 1:length(di)){
   na <- sub(paste0("http://data.earthenv.org/consensus_landcover/", di[i], "/"), "", li)
 
   dir.create(di[i])
-  setwd(paste0("./", di[i]))
+  setwd(di[i])
 
 	for(j in 1:length(li)){
   	  download(li[j], na[j], mode = "wb")}
@@ -107,7 +107,7 @@ for(i in 1:length(di)){
 # directory
 setwd("..")
 dir.create("cloud")
-setwd("./cloud")
+setwd("cloud")
 
 # list of url
 url <- "http://www.earthenv.org/cloud"
@@ -116,10 +116,10 @@ url
 pg <- read_html(url)
 pg
 
-li <- as.list(html_attr(html_nodes(pg, "a"), "href"))
-li
+link <- as.list(html_attr(html_nodes(pg, "a"), "href"))
+link
 
-tif <- grep(".tif", li, value = T)
+tif <- grep(".tif", link, value = T)
 tif
 
 na <- sub("http://data.earthenv.org/cloud/", "", tif)
@@ -137,7 +137,7 @@ for(i in 1:length(tif)){
 # directory
 setwd("..")
 dir.create("streams")
-setwd("./streams")
+setwd("streams")
 
 # list of url
 url <- "http://www.earthenv.org/streams"
@@ -146,10 +146,10 @@ url
 pg <- read_html(url)
 pg
 
-li <- as.list(html_attr(html_nodes(pg, "a"), "href"))
-li
+link <- as.list(html_attr(html_nodes(pg, "a"), "href"))
+link
 
-nc <- grep(".nc", li, value = T)
+nc <- grep(".nc", link, value = T)
 nc
 
 na <- sub("http://data.earthenv.org/streams/", "", nc)

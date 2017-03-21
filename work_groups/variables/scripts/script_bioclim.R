@@ -1,7 +1,7 @@
 ### script download of data bases for enm ###
 
 # Maurício Humberto Vancine - mauricio.vancine@gmail.com
-# 08/02/2017
+# 21/03/2017
 
 ###------------------------------------------------------------------------------###
 
@@ -20,11 +20,17 @@ library(rvest)
 ### bioclim
 ###------------------------------------------------------------------------------###
 
+### bioclim v01
 
 ### 1. current ###
 
 # directory
-setwd("D:/environmental_data/bioclim") # define directory to store the zips
+setwd("D:/environmental_data/bioclim") 
+dir.create("bioclim_v01")
+setwd("bioclim_v01")
+
+dir.create("current")
+setwd("current") 
 
 # list of url
 url <- "http://www.worldclim.org/current"
@@ -32,58 +38,58 @@ url <- "http://www.worldclim.org/current"
 pg <- read_html(url)
 pg
 
-link <- html_attr(html_nodes(pg, "a"), "href")
-link
-
-zip <- link[grep("bil.zip", link)]
-zip
-
-names <- as.character(zip)
-names
-
-names.s <- sub("http://biogeo.ucdavis.edu/data/climate/worldclim/1_4/grid/cur/", "", names)
-names.s
-
-# directory
-dir.create("current")
-setwd("./current") # define directory to store the zips
-
-# download
-for(i in names.s){
-  dir.create(sub(".zip", "", i))
-  setwd(paste0("./", sub(".zip", "", i)))
-
-  download(paste0("http://biogeo.ucdavis.edu/data/climate/worldclim/1_4/grid/cur/", i), 
-  paste0(i), mode = "wb")
-  unzip(i)
-  unlink(i)
-
-  setwd("..")}
-
-
-# check download and download errors
-li <- sub(".tif", "", list.files())
+li <- html_attr(html_nodes(pg, "a"), "href")
 li
 
-ch <- sub(".zip", "", list)
-ch
+zip <- grep(".zip", li, value = T)
+zip
 
-for(j in ch){
-  if(j %in% li){}
-      else{print(j)}}
+# download
+fo <- c("bil", "esri")
+fo
 
-for(j in ch){
-  if(j %in% li){}
-    else{
-      download(paste0("https:/cloud.s3it.uzh.ch:8080/v1/AUTH_5218a3a69ebf4a059c5a95889c5ee56e/CHELSA/", j, ".zip"), 
-      paste0(j, ".zip"), mode = "wb")
-      unzip(paste0(j, ".zip"))
-      unlink(paste0(j, ".zip"))}}
+re <- paste0("_", c("10m", "5m", "2-5m", "30s"), "_")
+re
+
+di <- c("10m", "5m", "2_5m", "30s")
+di
+
+for(i in fo){
+  dir.create(i)
+  setwd(i)
+  zip.fo <- grep(i, zip, value = T)
+
+	for(j in 1:length(re)){
+  	  dir.create(di[j])
+  	  setwd(di[j])
+
+	  li <- grep(re[j], zip.fo, value = T)
+  	  na <- sub("http://biogeo.ucdavis.edu/data/climate/worldclim/1_4/grid/cur/", "", li)
+	  zip.re <- grep(re[j], zip.fo, value = T)
+
+    	    for(k in 1:length(na)){
+     		dir.create(sub(".zip", "", na[k]))
+  		setwd(sub(".zip", "", na[k]))
+
+  		download(zip.re[k], na[k], mode = "wb")
+  		unzip(na[k])
+  		unlink(na[k])
+		
+		setwd("..")}
+  
+  	   setwd("..")}
+  
+  setwd("..")}
 
 
 ###------------------------------------------------------------------------------###
 
 ### 2. past ###
+
+# directory
+setwd("..")
+dir.create("past")
+setwd("past")
 
 # list of url
 url <- "http://www.worldclim.org/paleo-climate1"
@@ -94,135 +100,250 @@ pg
 link <- html_attr(html_nodes(pg, "a"), "href")
 link
 
-zip <- link[grep(".zip", link)]
+zip <- grep(".zip", link, value = T)
 zip
 
 
 # 2.1 mid
-# directory
-setwd("")
-
-mid <- link[grep("mid", link)]
-mid
-
-names <- as.character(mid)
-names
-
-names.s <- sub("http://biogeo.ucdavis.edu/data/climate/cmip5/mid/", "", names)
-names.s
+# diretorio
+dir.create("mid")
+setwd("mid")
+getwd()
 
 # download
-for(i in 1:length(mid)){
-  download(mid[i], names.s[i], mode = "wb")} 
+zip.mid <- grep("mid", zip, value = T)
+zip.mid
 
-# unzip the archives
-list <- list.files(patt = ".zip")
-list
+re <- paste0("_", c("10m", "5m", "2-5m", "30s"))
+re
 
-for(i in list){
-  unzip(i, exdir = "past_mid")}
+di <- c("10m", "5m", "2_5m", "30s")
+di
 
-###------------------------------------------------------------------------------###
+for(i in 1:length(re)){
+  dir.create(di[i])
+  setwd(di[i])
+
+  zip.re <- grep(re[i], zip.mid, value = T)
+  na <- sub("http://biogeo.ucdavis.edu/data/climate/cmip5/mid/", "", zip.re)
+
+  gcm <- unique(substr(na, 1, 2))
+    
+    for(j in gcm){
+	dir.create(j)
+  	setwd(j)
+	zip.gcm <- grep(j, zip.re, value = T)
+	na.gcm <- grep(j, na, value = T)
+
+	  for(k in 1:length(na.gcm)){
+	    dir.create(sub(".zip", "", na.gcm[k]))
+	    setwd(sub(".zip", "", na.gcm[k]))
+
+	    download(zip.gcm[k], na.gcm[k], mode = "wb")
+	    unzip(na.gcm[k])
+	    unlink(na.gcm[k])
+	    
+	    setwd("..")}
+  
+	setwd("..")}
+  
+  setwd("..")}
+
 
 # 2.2 lgm
-# directory
-setwd("") 
-
-lgm <- link[grep("lgm", link)]
-lgm
-
-names <- as.character(lgm)
-names
-
-names.s <- sub("http:/biogeo.ucdavis.edu/data/climate/cmip5/lgm/", "", names)
-names.s
+# diretorio
+setwd("..")
+dir.create("lgm")
+setwd("lgm")
+getwd()
 
 # download
-for(i in 1:length(lgm)){
-  download(lgm[i], names.s[i], mode = "wb")} 
+zip.lgm <- grep("lgm", zip, value = T)
+zip.lgm
 
-# unzip the archives
-list <- list.files(patt = ".zip")
-list
+re <- paste0("_", c("10m", "5m", "2-5m"))
+re
 
-for(i in list){
-  unzip(i, exdir = "past_lgm")}
+di <- c("10m", "5m", "2_5m")
+di
 
-###------------------------------------------------------------------------------###
+for(i in 1:length(re)){
+  dir.create(di[i])
+  setwd(di[i])
+
+  zip.re <- grep(re[i], zip.lgm, value = T)
+  na <- sub("http://biogeo.ucdavis.edu/data/climate/cmip5/lgm/", "", zip.re)
+
+  gcm <- unique(substr(na, 1, 2))
+    
+    for(j in gcm){
+	dir.create(j)
+  	setwd(j)
+	zip.gcm <- grep(j, zip.re, value = T)
+	na.gcm <- grep(j, na, value = T)
+
+	  for(k in 1:length(na.gcm)){
+	    dir.create(sub(".zip", "", na.gcm[k]))
+	    setwd(sub(".zip", "", na.gcm[k]))
+
+	    download(zip.gcm[k], na.gcm[k], mode = "wb")
+	    unzip(na.gcm[k])
+	    unlink(na.gcm[k])
+	    
+	    setwd("..")}
+  
+	setwd("..")}
+  
+  setwd("..")}
+
+
 
 # 2.3 lig
 # directory
-setwd("")
-
-lig <- link[grep("lig", link)]
-lig
-
-names <- as.character(lig)
-names
-
-names.s <- sub("http:/biogeo.ucdavis.edu/data/climate/worldclim/1_4/grid/pst/lig/", "", names)
-names.s
+setwd("..")
+dir.create("lig")
+setwd("./lig")
+getwd()
 
 # download
-for(i in 1:length(lig)){
-  download(lig[i], names.s[i], mode = "wb")} 
+lig <- grep("lig", zip, value = T)
+lig
 
-# unzip the archives
-list <- list.files(patt = ".zip")
-list
+na <- sub("http://biogeo.ucdavis.edu/data/climate/worldclim/1_4/grid/pst/lig/lig_30s_", "", lig)
+na
 
-for(i in list){
-  unzip(i, exdir = "past_lig")}
+for(i in 1:length(na)){
+  dir.create(sub(".zip", "", na[i]))
+  setwd(sub(".zip", "", na[i]))
 
+  download(lig[i], na[i], mode = "wb")
+  unzip(na[i])
+  unlink(na[i])
+
+  setwd("..")}
 
 ###------------------------------------------------------------------------------###
 
 
 ### 3. future ###
 
-# 3.1 10 m
+# directory
+setwd("..") 
+dir.create("future")
+setwd("./future") 
+getwd()
 
 # list of url
-url <- "http:/www.worldclim.org/cmip5_10m"
+url.f <- "http://www.worldclim.org/cmip5_"
+url.f
+
+# download
+pe <- c("10m", "5m", "2.5m", "30s")
+di <- c("10m", "5m", "2_5m", "30s")
+
+an <- c("2050", "2070")
+an.s <- c("50", "70")
+
+em <- c("rcp26", "rcp45", "rcp60", "rcp85")
+em.s <- c("26", "45", "60", "85")
+
+for(i in 1:length(pe)){
+  url <- paste0(url.f, pe[i])
+  pg <- read_html(url)
+  li <- html_attr(html_nodes(pg, "a"), "href")
+    
+  dir.create(di[i])
+  setwd(di[i])
+  zip <- grep(".zip", li, value = T)
+ 
+    for(j in 1:length(an)){
+      dir.create(an[j])
+      setwd(an[j])
+	zip.an <- grep(an.s[j], zip, value = T)
+
+	    for(k in 1:length(em)){
+  	  	dir.create(em[k])
+  	  	setwd(em[k])
+		zip.em <- grep(em.s[k], zip.an, value = T)
+		na <- sub(paste0("http://biogeo.ucdavis.edu/data/climate/cmip5/", pe[i], "/"), "", zip.em)
+		
+		gcm <- unique(substr(na, 1, 2))
+	  
+		  for(l in gcm){
+  	  	    dir.create(l)
+  	  	    setwd(l)
+		    zip.gcm <- grep(l, zip.em, value = T)
+		    na.gcm <- grep(l, na, value = T)
+
+			for(m in 1:length(na.gcm)){
+	   		  dir.create(sub(".zip", "", na.gcm[m]))
+	    		  setwd(sub(".zip", "", na.gcm[m]))
+
+			  download(zip.gcm[m], na.gcm[m], mode = "wb")
+			  unzip(na.gcm[m])
+			  unlink(na.gcm[m])
+
+			  setwd("..")}
+
+		    setwd("..")}
+
+		setwd("..")}
+
+	  setwd("..")}
+
+  setwd("..")}
+
+###----------------------------------------------------------------------------###
+
+### bioclim v02
+
+### 1. current ###
+
+# directory
+setwd("..")
+setwd("..")
+dir.create("bioclim_v02")
+setwd("bioclim_v02")
+
+# list of url
+url <- "http://www.worldclim.org/version2"
 
 pg <- read_html(url)
 pg
 
-link <- html_attr(html_nodes(pg, "a"), "href")
-link
+li <- html_attr(html_nodes(pg, "a"), "href")
+li
 
-zip <- link[grep(".zip", link)]
+zip <- grep(".zip", li, value = T)
 zip
 
-
-# 3.1.1 rcp26
-# directory
-setwd("")
-
-rcp26 <- link[grep("26", link)]
-rcp26
-
-names <- as.character(rcp26)
-names
-
-names.s <- sub("http:/biogeo.ucdavis.edu/data/climate/cmip5/10m/", "", names)
-names.s
-
 # download
-for(i in 1:length(rcp26)){
-  download(rcp26[i], names.s[i], mode = "wb")} 
+re <- paste0("_", c("10m", "5m", "2.5m", "30s"), "_")
+re
 
-# unzip the archives
-list <- list.files(patt = "50.zip")
-list
+di <- c("10m", "5m", "2_5m", "30s")
+di
 
-for(i in list){
-  unzip(i, exdir = "10m_2050_rcp26")}
+for(i in 1:length(re)){
+  dir.create(di[i])
+  setwd(paste0("./", di[i]))
 
-list <- list.files(patt = "70.zip")
-list
+  do <- grep(re[i], zip, value = T)
+  na <- sub("http://biogeo.ucdavis.edu/data/worldclim/v2.0/tif/base/wc2.0_", "", do)
+  
+    for(j in 1:length(na)){
+      dir.create(sub(".zip", "", na[j]))
+  	setwd(sub(".zip", "", na[j]))
 
-for(i in list){
-  unzip(i, exdir = "10m_2070_rcp26")}
+  	download(do[j], na[j], mode = "wb")
+  	unzip(na[j])
+  	unlink(na[j])
 
-###------------------------------------------------------------------------------###
+  	setwd("..")}
+  
+  setwd("..")}
+
+
+###----------------------------------------------------------------------------###
+
+

@@ -55,8 +55,8 @@ for(j in ch){
 for(j in ch){
   if(j %in% li){}
     else{
-      download(paste0("https://cloud.s3it.uzh.ch:8080/v1/AUTH_5218a3a69ebf4a059c5a95889c5ee56e/CHELSA/", j, ".zip"), 
-      paste0(j, ".zip"), mode = "wb")
+      #download(paste0("https://cloud.s3it.uzh.ch:8080/v1/AUTH_5218a3a69ebf4a059c5a95889c5ee56e/CHELSA/", j, ".zip"), 
+      #paste0(j, ".zip"), mode = "wb")
       unzip(paste0(j, ".zip"))
       unlink(paste0(j, ".zip"))}}
 
