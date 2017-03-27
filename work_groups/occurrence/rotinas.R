@@ -14,7 +14,7 @@ spp <- as.matrix(spp.csv[ ,1])
 sp <- spp <- c('Cavanillesia umbellata')
 sp <- spp <- c('Aralia warmingiana')
 
-# loop baixa gbig
+# loop baixar gbig
 for (i in 1:NROW(spp)){
   sp <- spp[i]
   cat(' (',i,'-',sp)
