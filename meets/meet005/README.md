@@ -6,7 +6,7 @@
 
 ### Resumo
 - Agora com transmissão ao [vivo](https://livestream.com/accounts/16357909/events/7171396)
-- Revisão do script para seleção de variáveis, disponível junto com os dados no [meet004]()
+- Revisão do script para seleção de variáveis, disponível junto com os dados no [meet004](https://github.com/LEEClab/SDMGroup/tree/master/meets/meet004)
 - Script para construir os modelos
 - Discussão de contribuição das variáveis
 - Discussão dos limites de corte (*thresholds*) para uso nos *ensembles*
