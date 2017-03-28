@@ -39,7 +39,11 @@ setwd("D:/github/SDMGroup/meets/meet004/occurrences")
 points <- read.table("pablo_plants.txt", h = T)
 head(points, 10)
 
-plot(points[, 2], points[, 3])
+am <- shapefile("D:/github/SDMGroup/meets/meet004/south/south_america_diss_gcs_wgs84.shp")
+am
+
+plot(am, col = "gray80", axes = T, xlim = c(-60, -60), main = "Mapa Pablo Plants")
+points(points$Long, points$Lat, col = points$id, axes = T, pch = 20)
 
 # diretorio da pasta de dados de entrada
 setwd("D:/github/SDMGroup/meets/meet004/selection")
@@ -74,7 +78,7 @@ plot(env.stack.6k)
 plot(env.stack.21k)
 
 plot(env.stack.0k[[1]])
-points(points[, 2], points[, 3], col = c(), pch = 20, add = T)
+points(points[, 2], points[, 3], pch = 20)
 
 
 # extraindo os valores de cada celula e adicionando as coordenadas
@@ -119,8 +123,8 @@ file.exists(jar)
 # diretorio de saida dos enms
 setwd("..")
 getwd()
-dir.create("_saidas_enm")
-setwd("./_saidas_enm")
+dir.create("_saidas_enm_2")
+setwd("./_saidas_enm_2")
 getwd()
 
 # aogcms
@@ -130,11 +134,11 @@ AOGCM
 # enms
 for(i in 1:length(levels(points[, 1]))){ # for para cada especie
 
-eval.Bioclim <- NULL
-eval.Gower <- NULL
-eval.Maha <- NULL
-eval.Maxent <- NULL
-eval.SVM <- NULL
+eval.Bioclim <- NULL # somente presenca - envelope
+eval.Gower <- NULL # somente presenca - distancia
+eval.Maha <- NULL # somente presenca - distancia
+eval.Maxent <- NULL # presenca/pseudo-ausencia
+eval.SVM <- NULL # presenca/pseudo-ausencia
 
 eval.names <- NULL
 

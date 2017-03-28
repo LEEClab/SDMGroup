@@ -123,7 +123,7 @@ ifelse(corr >= 0.7, 1, 0) # 1 ou 0
 # exportar tabela com a correlacao
 write.table(abs(round(corr, 2)), "cor_pres.xls", row.names = T, sep = "\t")
 write.table(ifelse(corr >= 0.7, "Sim", "Não"), "cor_pres_afirmacao.xls", row.names = T, 
-		sep = "\t", col = ifelse(corr >= 0.7, "red", "blue")))
+		sep = "\t")
 
 # plot da correlacao
 corrplot(corr, type = "lower", diag = F, tl.srt = 45, mar = c(3, 0.5, 2, 1),
@@ -140,7 +140,7 @@ corrplot(-1 * (abs(corr)), type = "lower", diag = F, tl.srt = 45, mar = c(3, 0.5
 # exportar figura na pasta do diretorio
 tiff("cor_ma.tif", width = 18, height = 18, units = "cm", res = 300, compression = "lzw")
 
-?corrplot(corr, type = "lower", diag = F, tl.srt = 45, mar = c(3, 0.5, 2, 1),
+corrplot(corr, type = "lower", diag = F, tl.srt = 45, mar = c(3, 0.5, 2, 1),
 	   title = "Correlações entre variáveis Bioclimáticas")
 
 dev.off()
@@ -231,11 +231,11 @@ plot(pca.r$map[[1:5]])
 
 # exportar as novas variaveis
 # exportar apenas uma variavel
-writeRaster(pca.r$map[[1]], "pc1_e.asc", format = "ascii")
-writeRaster(pca.r$map[[2]], "pc2_e.asc", format = "ascii")
-writeRaster(pca.r$map[[3]], "pc3_e.asc", format = "ascii")
-writeRaster(pca.r$map[[4]], "pc4_e.asc", format = "ascii")
-writeRaster(pca.r$map[[5]], "pc5_e.asc", format = "ascii")
+writeRaster(pca.r$map[[1]], "pc1.asc", format = "ascii")
+writeRaster(pca.r$map[[2]], "pc2.asc", format = "ascii")
+writeRaster(pca.r$map[[3]], "pc3.asc", format = "ascii")
+writeRaster(pca.r$map[[4]], "pc4.asc", format = "ascii")
+writeRaster(pca.r$map[[5]], "pc5.asc", format = "ascii")
 
 # comando for
 print(1)
