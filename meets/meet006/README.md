@@ -1,17 +1,16 @@
 # SDMGroup
 
-## Resumo das reuniıes
+## Resumo das reuni√µes
 
 ### Dia 006 - 30/03/2017
 
 ### Resumo
-- Agora com transmiss„o ao [vivo](https://livestream.com/accounts/16357909/events/7171396)
-
+- Debate te√≥rico sobre o uso de *ensembles* em ENMs
 
 ### Artigos
-- Ara˙jo, M. B., New M. 2007. Ensemble forecasting of species distributions. Trends in Ecology & Evolution 22(1):42-47.
+- Ara√∫jo, M. B., New M. 2007. Ensemble forecasting of species distributions. Trends in Ecology & Evolution 22(1):42-47.
 - Diniz-Filho, J. A. F. et al. 2009. Partitioning and mapping uncertainties in ensembles of forecasts of species turnover under climate change. Ecography, 32:897-906.
 
-### Link para assistir a reuni„o no Youtube
-[Meet006]()
+### V√≠deos
+[Jo√£o fala sobre ENMs](https://www.youtube.com/watch?v=XG0ObCVcqSg&feature=youtu.be)
 
