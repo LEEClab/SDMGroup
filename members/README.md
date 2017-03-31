@@ -137,7 +137,7 @@
 
   **Formação**: Ecólogo - UNESP-Rio Claro; Mestrando em Zoologia - UNESP-Rio Claro
   
-  **Interesses**: Anfíbios, Ecologia da Paisagem, Mudanças climáticas, R, Python
+  **Interesses**: Anfíbios, Ecologia da Paisagem, Mudanças climáticas, R, Python, GRASS GIS
   
   **E-mail**: mauricio.vancine@gmail.com
   
