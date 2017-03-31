@@ -6,11 +6,17 @@
 
 ### Resumo
 - Debate teórico sobre o uso de *ensembles* em ENMs
+- Explicação do script de *ensemble*
+- 
 
 ### Artigos
 - Araújo, M. B., New M. 2007. Ensemble forecasting of species distributions. Trends in Ecology & Evolution 22(1):42-47.
 - Diniz-Filho, J. A. F. et al. 2009. Partitioning and mapping uncertainties in ensembles of forecasts of species turnover under climate change. Ecography, 32:897-906.
+- Terribile, L. C. et al. 2012. Areas of Climate Stability of Species Ranges in the Brazilian Cerrado: Disentangling Uncertainties Through Time. Natureza & Conservação, 10(2):152-159.
 
 ### Vídeos
-[João fala sobre ENMs](https://www.youtube.com/watch?v=XG0ObCVcqSg&feature=youtu.be)
+[João Giovanelli fala sobre ENMs e anfíbios em São Paulo](https://www.youtube.com/watch?v=XG0ObCVcqSg&feature=youtu.be)
+
+### Sites
+[MODELAGEM PREDITIVA DOS ANFÍBIOS DO ESTADO DE SÃO PAULO](https://anfibiosnomapa.wordpress.com)
 
