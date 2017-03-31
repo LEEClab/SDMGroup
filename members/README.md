@@ -132,7 +132,7 @@
   
 ---
  
- <img alt="@mauriciovancine" class="avatar rounded-2" height="200" src="https://avatars3.githubusercontent.com/u/13386924?v=3&amp;u=9df6b95759a23807b86d7fe1021ca53e4f3759e6&amp;s=400" width="200">
+ <img alt="@mauriciovancine" class="avatar rounded-2" height="100" src="https://avatars3.githubusercontent.com/u/13386924?v=3&amp;u=9df6b95759a23807b86d7fe1021ca53e4f3759e6&amp;s=400" width="100">
 - Maurício Humberto Vancine    
 
   **Formação**: Ecólogo - UNESP-Rio Claro; Mestrando em Zoologia - UNESP-Rio Claro
