@@ -5,10 +5,16 @@
 ### Dia 007 - 06/04/2017
 
 ### Resumo
-- Debate teórico sobre o uso de *ensembles* em ENMs
-- Explicação do script de *ensemble*
-- *Ensemble* por média e *ensemble* por frequência
-- Particionamento da variação dos algoritmos, períodos e GCMs ou AOGCMs (ANOVA hierárquica)
-- Forma de unir os *ensembles* de média e de frequência
+- Apresentação da Natália
+- Modelos de Nicho para as espécies de aves
+- Base de dados de [Wetland](http://www.cifor.org/global-wetlands/) para o mundo
+- Vídeos do Bira [Vídeo 1](https://www.youtube.com/watch?v=s3gsP5HzwdI) e [Vídeo 2](https://www.youtube.com/watch?v=3sTFQI3y-fA)
 
-### Apresentação
+- Estratégias:
+1. *Sporophila lineola*
+  - Modelar a espécie para as duas populações separadamente, com extensões diferentes (Sul/Sudeste e Nordeste) e projetar para a Amazônia
+  - Usa variáveis de médias de temperatura e precipitação para presente e futuro
+  
+### Vídeo
+[Célio Haddad e pererecas das Antilhas](http://g1.globo.com/fantastico/noticia/2014/12/pererecas-invasoras-incomodam-moradores-em-bairro-de-sao-paulo.html)
+
