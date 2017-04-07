@@ -1,0 +1,125 @@
+Scientific_Name	specie_pop	Data	Longitude	Latitude
+S_lineola	S_lineola_Sul	25/03/2017	-47.50119	-15.382697
+S_lineola	S_lineola_Sul	 26/03/2017	-40.15054	-19.472791
+S_lineola	S_lineola_Sul	26/03/2017	-49.22492	-16.434594
+S_lineola	S_lineola_Sul	09/03/2013	-49.53919	-16.25859
+S_lineola	S_lineola_Sul	13/03/2013	-43572159	-19.5198
+S_lineola	S_lineola_Sul	05/02/2011	-4619600	-22.48
+S_lineola	S_lineola_Sul	24/11/2012	-43322407	-21.51
+S_lineola	S_lineola_Sul	09/12/2012	-43311346	-21.55417
+S_lineola	S_lineola_Sul	05/12/2010	-50.344057	-13.125586
+S_lineola	S_lineola_Sul	11/02/2009	-44.301596	-22.242176
+S_lineola	S_lineola_Sul	22/03/2017	-49.141188	-22.524805
+S_lineola	S_lineola_Sul	27/02/2011	 -47. 5877	-22.525432
+S_lineola	S_lineola_Sul	04/03/2012	-46.511808	-22.561973
+S_lineola	S_lineola_Sul	23/12/2012	-46.511996	 -23. 85111
+S_lineola	S_lineola_Sul	17/12/2014	 -45. 74220	-22.433066
+S_lineola	S_lineola_Sul	18/05/2013	-46.353375	-23.191185
+S_lineola	S_lineola_Sul	14/02/2017	-46.353375	-23.191185
+S_lineola	S_lineola_Sul	 09/02/2011	-48.162492	-24.183159
+S_lineola	S_lineola_Sul	09/01/2011	-47.271258	-24.14637
+S_lineola	S_lineola_Sul	13/12/2012	-45.373487	 -23. 13791
+S_lineola	S_lineola_Nor	19/03/2012	 -41. 1264	-12.35969
+S_lineola	S_lineola_Nor	18/04/2011	-40.11578	-11.40152
+S_lineola	S_lineola_Nor	26/06/2016	-40.27026	-9.442597
+S_lineola	S_lineola_Nor	 05/05/2016	-40.291815	-9.2567
+S_lineola	S_lineola_Nor	28/04/2013	-40.312098	-11.225471
+S_lineola	S_lineola_Nor	11/02/2011	-39.591092	-7.1415
+S_lineola	S_lineola_Nor	16/06/2009	-39.555219	-6.57337
+S_lineola	S_lineola_Nor	09/02/2014	-38.213623	-4.29568
+S_lineola	S_lineola_Nor	05/02/2016	-38.33117	-3.471725
+S_lineola	S_lineola_Nor	14/03/2010	 -40. 45250	-7.51914
+S_lineola	S_lineola_Nor	 10/05/2014	 -40. 45250	-7.51914
+S_lineola	S_lineola_Nor	01/04/2015	 -40. 45250	-7.51914
+S_lineola	S_lineola_Nor	23/03/2017	 -40. 45250	-7.51914
+S_lineola	S_lineola_Nor	28/04/2015	-37.574773	-5.53939
+S_lineola	S_lineola_Nor	16/05/2008	-40.163995	-4.204268
+S_lineola	S_lineola_Nor	11/01/2009	-40.132058	-4.26597
+S_lineola	S_lineola_Nor	01/01/2012	-39.65981	-3.402751
+S_lineola	S_lineola_Nor	05/05/2010	-40.20241	-3.432199
+S_lineola	S_lineola_Nor	03/03/2013	-40.551479	-3.511742
+S_lineola	S_lineola_Nor	23/04/2011	-38.28	-7.226
+S_lineola	S_lineola_Nor	13/07/2013	-37.575917	-6.36303
+S_lineola	S_lineola_Nor	11/03/2015	 -37. 91262	-6.561718
+S_lineola	S_lineola_Nor	14/04/2011	-37.91262	-6.561718
+S_lineola	S_lineola_Nor	11/04/2010	-40.435426	-9.254632
+S_lineola	S_lineola_Nor	26/03/2015	-36.22701	-7.501995
+S_lineola	S_lineola_Nor	06/03/2015	-42.205554	-4.144251
+S_lineola	S_lineola_Nor	28/01/2014	-42.46679	  -5. 22795
+S_lineola	S_lineola_Nor	26/02/2013	-37.19071	-5.122216
+S_lineola	n_identificada	12/01/2006	-73.45055556	-3.501111111
+S_lineola	n_identificada	12/01/2006	-74.51944444	-2.208055556
+S_lineola	n_identificada	12/01/2006	-75.725	1.4875
+S_lineola	n_identificada	12/01/2006	-69.95	-4.15
+S_lineola	n_identificada	12/01/2006	-67.70222222	4.048611111
+S_lineola	n_identificada	12/01/2006	-69.95	-4.15
+S_lineola	n_identificada	12/01/2006	-67.26666667	0.016666667
+S_lineola	n_identificada	12/01/2006	-71.40138889	4.733333333
+S_lineola	n_identificada	12/01/2006	-76.61666667	-0.4
+S_lineola	n_identificada	12/01/2006	-73.4	3.683333333
+S_lineola	n_identificada	12/01/2006	-71.40138889	4.733333333
+S_lineola	n_identificada	12/01/2006	-70.5	-1
+S_lineola	n_identificada	12/01/2006	-71.33333333	4.583333333
+S_lineola	n_identificada	12/01/2006	-70.23833333	1.275
+S_lineola	n_identificada	12/01/2006	-70.31027778	1.306388889
+S_lineola	n_identificada	12/01/2006	-71.95805556	1.211944444
+S_lineola	n_identificada	12/01/2006	-73.4	3.683333333
+S_lineola	n_identificada	12/01/2006	-70.1	-4.088333333
+S_lineola	n_identificada	26/10/2005	-48.016767	-21.716467
+S_lineola	n_identificada	26/10/2005	-48.016767	-21.716467
+S_lineola	n_identificada	26/10/2005	-48.016767	-21.716467
+S_lineola	n_identificada	26/10/2005	-48.016767	-21.716467
+S_lineola	n_identificada	26/10/2005	-47.533333	-24.683333
+S_lineola	n_identificada	26/10/2005	-47.810217	-24.452717
+S_lineola	n_identificada	26/10/2005	-47.810217	-24.452717
+S_lineola	n_identificada	26/10/2005	-48.016767	-21.716467
+S_lineola	n_identificada	26/10/2005	-47.533333	-24.683333
+S_lineola	n_identificada	26/10/2005	-47.533333	-24.683333
+S_lineola	n_identificada	26/10/2005	-47.533333	-24.683333
+S_lineola	n_identificada	26/10/2005	-48.016767	-21.716467
+S_lineola	n_identificada	26/10/2005	-48.016767	-21.716467
+S_lineola	n_identificada	26/10/2005	-48.016767	-21.716467
+S_lineola	n_identificada	26/10/2005	-45.41	-23.76
+S_lineola	n_identificada	08/03/2010	-73.80555556	-7.116666667
+S_lineola	n_identificada	06/02/2015	-40.600278	-19.935556
+S_lineola	n_identificada	15/08/2016	-44.3333	-4.38333
+S_lineola	n_identificada	15/08/2016	-39.4094	-7.23417
+S_lineola	n_identificada	15/08/2016	-39.4992	-10.6672
+S_lineola	n_identificada	15/08/2016	-46.9422	-22.3722
+S_lineola	n_identificada	15/08/2016	-46.05	-20.6153
+S_lineola	n_identificada	15/08/2016	-49.68	-21.05
+S_lineola	n_identificada	15/08/2016	-49.68	-21.05
+S_lineola	n_identificada	15/08/2016	-49.68	-21.05
+S_lineola	n_identificada	15/08/2016	-49.68	-21.05
+S_lineola	n_identificada	15/08/2016	-49.68	-21.05
+S_lineola	n_identificada	15/08/2016	-49.68	-21.05
+S_lineola	n_identificada	15/08/2016	-48.8	-22.59
+S_lineola	n_identificada	15/08/2016	-48.3289	-25.3067
+S_lineola	n_identificada	15/08/2016	-48.3289	-25.3067
+S_lineola	n_identificada	15/08/2016	-47.92	-24.38
+S_lineola	n_identificada	15/08/2016	-47.92	-24.38
+S_lineola	n_identificada	15/08/2016	-36.4711	-9.31889
+S_lineola	n_identificada	15/08/2016	-36.4711	-9.31889
+S_lineola	n_identificada	15/08/2016	-48.12	-22.78
+S_lineola	n_identificada	15/08/2016	-48.12	-22.78
+S_lineola	n_identificada	15/08/2016	-48.12	-22.78
+S_lineola	n_identificada	15/08/2016	-48.12	-22.78
+S_lineola	n_identificada	15/08/2016	-48.12	-22.78
+S_lineola	n_identificada	15/08/2016	-48.12	-22.78
+S_lineola	n_identificada	15/08/2016	-48.12	-22.78
+S_lineola	n_identificada	15/08/2016	-45.88	-23.17
+S_lineola	n_identificada	15/08/2016	-45.88	-23.17
+S_lineola	n_identificada	15/08/2016	-41.4669	-7.07694
+S_lineola	n_identificada	15/08/2016	-41.4669	-7.07694
+S_lineola	n_identificada	15/08/2016	-41.7769	-4.27333
+S_lineola	n_identificada	15/08/2016	-44.96	-23.07
+S_lineola	n_identificada	15/08/2016	-44.96	-23.07
+S_lineola	n_identificada	15/08/2016	-46.3183	-22.8547
+S_lineola	n_identificada	21/12/2016	-47.06	-22.9
+S_lineola	n_identificada	10/02/2017	-46.99	-22.97
+S_lineola	n_identificada	27/05/2015	-47.778056	-22.509722
+S_lineola	n_identificada	27/05/2015	-47.060556	-22.905833
+S_lineola	n_identificada	27/05/2015	-47.85	-22.2
+S_lineola	n_identificada	27/05/2015	-56.486667	-2.104444
+S_lineola	n_identificada	14/03/2017	-47.242802	-23.957399
+				
