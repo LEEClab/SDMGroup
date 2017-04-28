@@ -12,8 +12,8 @@ library('dplyr') ## para manipular BD
 library('rgbif')
 
 # ajustar conforme fonte do pacote flora
-load('D:\\R\\flora\\flora-master\\R\\sysdata.rda')
-
+#load('sysdata.rda')
+#setwd("~/R/win-library/3.3/flora/R")
 
 ### Busca Ocorrências na base gbif
 ####################################################################################=c("name","decimalLongitude","decimalLatitude", "collectionCode","catalogNumber","country","stateProvince","county","locality","day","month","year","recordedBy","recordNumber","occurrenceRemarks")
@@ -276,3 +276,145 @@ read_occurrence_records <- function(file.name,project='',data_source='',sep='\t'
   }
   else{cat(' # ',' não encontrado!# ')}
 }
+
+
+
+##### functions  cleaning data with geographic information
+
+
+info_geografica<-function(ruta_info_geo){
+  setwd(ruta_info_geo) 
+  paises<<-readShapePoly("PAISES_SA_WGS84.shp")
+  estado<<-readShapePoly("BRA_limite_estado.shp")
+  nombres.est<<-as.character(estado@data$NAME_1)
+  Encoding(nombres.est)<<-"latin1"
+  estado@data$NAME_1<<-nombres.est
+  mpios<<-readShapePoly("BRA_limite_mun3.shp")
+  nombres.mun<<-as.character(mpios@data$NAME_2)
+  Encoding(nombres.mun)<<-"latin1"
+  mpios@data$NAME_2<<-nombres.mun
+  sedes<<-readShapePoints("sedes_municipais.shp")
+  
+}
+
+
+
+### Revisar "overlay" de los registros con el "Shape" de departamento
+corroboracion_pais=function(datos,mun){
+  
+  coordinates(datos)=~longitude+latitude
+  #ovm=overlay(datos,mun)
+  ovm=over(datos,mun)
+  #cntrm=as.character(mun@data$COUNTRY[ovm$PAIS]) #esta 
+  cntrm=as.character(ovm$PAIS)
+  if(length(which(!is.na(datos@data$state)))>0){
+    im=1:nrow(datos@data) # linea
+    tb=as.character(datos@data$country)# fala
+    
+    
+    CompareMun=cbind(im,cntrm,tb)
+    
+    
+    ma1=NULL 
+    for  ( i in 1:nrow(CompareMun)){
+      tmp<-agrep(CompareMun[i,2],CompareMun[i,3], max=4,value=F,ignore.case=T)
+      if (length(tmp)==0) tmp=0
+      ma<-c(CompareMun[i,1],tmp)
+      ma1=rbind(ma1,ma)
+    }
+    
+    km=as.integer(ma1[which(is.na(ma1[,2])),1]) # pais diferente
+    lm=as.integer(ma1[which(ma1[,2]==1),1]) # pais igual 
+    
+    
+  }else{
+    mm=rep(0,nrow(datos))
+    op=rep(NA,nrow(datos))
+  }
+  
+  X=list()
+  X[[1]]=lm # pais correcto
+  X[[2]]=km #pais errado
+  X[[3]]=cntrm # sugerencia
+  return(X)
+}
+
+corroboracion_dep=function(datos,estado){
+  
+  coordinates(datos)=~longitude+latitude
+  #ovm=overlay(datos,estado)
+  ovm=over(datos,estado)
+  #cntrm=as.character(estado@data$HASC_1[ovm])
+  cntrm1=as.character(ovm$HASC_1)
+  cntrm2=as.character(ovm$NAME_1)
+  Encoding(cntrm2)="latin1"
+  
+  if(length(which(!is.na(datos@data$stateprovince)))>0){
+    im=jm=NULL
+    for (j in 1:length(cntrm1)){
+      print(j)
+      name.c=cntrm1[j]
+      name.c2=cntrm2[j]
+      
+      name.dat=as.character(datos@data$stateprovince)[j]
+      Encoding(name.dat)="latin1"
+      if (nchar(name.dat)==2){ comp=name.dat==name.c} else{
+        comp=agrep(name.dat,name.c2,max.distance=3, ignore.case=T)
+      }
+      if (length(comp)==0){im=c(im,j) } else {## datos con diferente estado
+        jm=c(jm,j)}## datos con igual estado 
+    }
+    
+    diferente=as.data.frame(cbind(cntrm,as.character(datos@data$stateprovince)))[im,]
+    
+    #CompareDpto=cbind(im,diferente)
+    #MunCorrecto=cbind(cntrm,as.character(datos@data$state))[jm,]
+    
+    
+  } else{
+    im=rep(0,nrow(datos))
+    jm=rep(NA,nrow(datos))
+  }
+  
+  
+  X=list()
+  X[[1]]=jm # estado igual 
+  X[[2]]=im# estado diferente
+  X[[3]]=cntrm1 #nombre estado correcto
+  return(X)
+}
+
+corroboracion=function(datos,mun){
+  coordinates(datos)=~longitude+latitude
+  #ovm=overlay(datos,mun)
+  ovm=over(datos,mun)
+  #cntrm=as.character(mun@data$NAME_2[ovm])
+  cntrm=as.character(ovm$NAME_2)
+  Encoding(cntrm)="latin1"
+  
+  if(length(which(!is.na(datos@data$county)))>0){
+    mm=op=NULL
+    for (j in 1:length(cntrm)){
+      print(j)
+      name.c=cntrm[j]
+      name.dat=as.character(datos@data$county)[j]
+      Encoding(name.dat)="latin1"
+      # if(name.dat==""){name.dat=NA}else{name.dat=name.dat}
+      if (!is.na(name.dat)& name.dat!=""){comp=agrep(name.dat,name.c,max.distance=4, ignore.case=T)}
+      if (length(comp)!=0){mm=c(mm,j) } else {##iqual municipality 
+        op=c(op,j)} ## different municipality
+    }
+    
+  }else{
+    mm=rep(0,nrow(datos))
+    op=rep(NA,nrow(datos))
+  }
+  
+  X=list()
+  X[[1]]=mm
+  X[[2]]=op
+  X[[3]]=cntrm
+  return(X)
+}
+
+
