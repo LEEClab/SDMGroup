@@ -9,12 +9,14 @@
 
 - "Mudanças climáticas e diversidade filogenética de pequenos mamíferos para a Mata Atlântica"
 
-- Decisões:
+---
 
 1. Ocorrências
 - Pontos do SpeciesLink, GBIF e Banco de Dados (BD)
 
 - Limpeza dos dados com script Caro-Pablo
+
+---
 
 2. Variáveis
 
@@ -26,9 +28,13 @@
 
 - Paisagem: SOS MA 2014 para corte dos *pixels*
 
+---
+
 3. Algoritmos
 
 - *Ensemble* por média ponderada (TSS > 0.5)
 
-- Thr - *Sensitivity-specificity sum maximization*
+- *Sensitivity-specificity sum maximization* para calibrar os ENMs
+
+- *lowest presence threshold* para mapas de riqueza, apenas para os pontos do BD
 
