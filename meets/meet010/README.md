@@ -7,4 +7,14 @@
 ### Resumo
 - Apresentação dos *scripts* de limpeza de pontos 
 
+- 
+
+- 
+
+
+### Transmissão ao vivo!!!
+
+[sdmgroup](https://appear.in/sdmgroup)
+ 
+
 
