@@ -7,7 +7,7 @@
 ### Resumo
 - Apresentação dos *scripts* de limpeza de pontos 
 
-- 
+- Decisão 
 
 - 
 
