@@ -10,4 +10,4 @@ The group is placed at SÃ£o Paulo State University, UNESP, in Rio Claro city, SÃ
 The meet occur all **Thursdays**, at **10-12 am**, in Department of Ecology, UNESP-Rio Claro.
 
 ## Live transmission
-[sdmgroup](https://appear.in/sdmgroup)
+### [sdmgroup](https://appear.in/sdmgroup) - Appear In
