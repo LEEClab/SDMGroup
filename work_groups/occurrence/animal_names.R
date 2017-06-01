@@ -4,9 +4,10 @@
 ### return_type  = 'names','names_synonyms','synonyms'
 ### classification= TRUE (return the taxonomic  classification)
 ###################################################################################
-setwd("~/GitHub/SDMGroup/work_groups/occurrence/OccurrenceRecords/animals")
-mammals=read.csv("list mammals of brasil.csv")
-sp.name=mammals$Sp.name[1:30]
+root.dir="~/UNESP/RICARDO"
+setwd(root.dir)
+mammals=read.csv("spnames.csv")
+sp.name=unique(as.character(mammals$sp.name))
 nomes_sinonimos_animals <- function(sp.name,return_type='names_synonyms', 
                                     taxon_rank_search = 'species',
                                     classification=TRUE){
@@ -62,8 +63,47 @@ nomes_sinonimos_animals <- function(sp.name,return_type='names_synonyms',
 
 
 
-animals.names=nomes_sinonimos_animals(sp.name, classification=F, return_type='synonyms')
+animals.names=nomes_sinonimos_animals(sp.name, classification=T)
 
 animals.names2=nomes_sinonimos_animals(sp.name, taxon_rank_search = 'subspecies', classification=F)
 
+
+spp=as.data.frame(unique(animals.names$search.str), stringsAsFactors = F)
+names(spp)='search.str'
+
+
+# loop baixar gbig
+for (i in 1:NROW(spp)){
+  sp.search <- as.data.frame(spp[i,],stringsAsFactors = F)
+  names(sp.search)='search.str'
+  sp=as.character(sp.search)
+  cat(' (',i,'-',as.character(sp.search),')')
+   if (NROW(spp.search)>0){
+      x<-busca_ocorrencia_gbif(sp.search)
+      if (NROW(x)>0)
+      {
+        setwd(paste0(getwd(),"/","records_gbif"))
+        file_name_txt <- paste0(sp,".txt")
+        write.table(dat,file_name_txt,append = FALSE, quote = TRUE, sep = ",",eol = "\n", na = "NA", dec = ".", row.names = FALSE, col.names = TRUE, qmethod = "double", fileEncoding = "UTF-8")
+        setwd(root.dir)}
+        
+        #save_occurrence_records(x,sp,base = 'gbif',dir = "records_gbif" )}
+      else{cat('=','sem registros!')}
+   }
+  else{cat('=',' não encontrada')}
+  }#else{cat('=','já baixado!)')}
+
+
+#junção de dados de arquivos de mesmo nome de diferentes bases (por nome de especie por exemplo)
+
+for (i in 1:NROW(spp)){
+  sp <- spp[i]
+  cat(' (',i,'-',sp)
+  x <- xg <- xs <- {}
+  xg <- read_occurrence_records(sp,base='gbif',sep=' ',dir=diretorio,encoding= 'Latin-1')
+  xs <- read_occurrence_records(sp,base='splink',dir=diretorio)
+  xj <- read_occurrence_records(sp,base='jabot',sep=',',dir=diretorio,encoding= 'Latin-1')
+  x <- rbind(xg,xs,xj)
+  save_occurrence_records(x,sp,base = 'all',dir=diretorio)
+}
 
