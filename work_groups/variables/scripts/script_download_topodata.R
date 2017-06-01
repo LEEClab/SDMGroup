@@ -1,13 +1,13 @@
 ### script download of data bases for enm ###
 
-# Maurício Humberto Vancine - mauricio.vancine@gmail.com
+# Mauricio Humberto Vancine - mauricio.vancine@gmail.com
 # 17/03/2017
 
 ###-----------------------------------------------------------------------------###
 
 # clean and increase memory limite
 rm(list = ls())
-memory.limit(size = 17500000000000) 
+memory.limit(size = 1.75e13) 
 
 # install and require packages
 # install.packages(c("downloader", "xml2", "rvest"), dep = T)
@@ -17,10 +17,15 @@ library(xml2)
 library(rvest)
 
 ###-----------------------------------------------------------------------------###
-### topodata
+###                               topodata
 ###-----------------------------------------------------------------------------###
+
+## all topodata
 # directory
-setwd("D:/environmental_data/relief/topodata") # define directory to store the zips
+setwd("D:/environmental_data")
+dir.create("topodata")
+setwd("topodata")
+getwd()
 
 # list of url
 url <- "http://www.dsr.inpe.br/topodata/data/geotiff/"
@@ -34,13 +39,7 @@ link
 topo <- grep(".zip", link, value = T)
 topo
 
-###-----------------------------------------------------------------------------###
-
-# topodata
-dir.create("topodata")
-setwd("topodata")
-getwd()
-
+# download
 for(i in topo){
   download(paste0("http://www.dsr.inpe.br/topodata/data/geotiff/", i), paste0(i), 
   mode = "wb")
@@ -54,10 +53,12 @@ li
 to <- sub(".zip", "", topo)
 to
 
+# check
 for(j in to){
   if(j %in% li){}
       else{print(j)}}
 
+# download
 for(j in to){
   if(j %in% li){}
     else{
@@ -69,14 +70,17 @@ for(j in to){
 
 ###-----------------------------------------------------------------------------###
 
-# altitude
-alt <- grep("ZN", link, value = T)
-alt
-
-# download
+## altitude
+# directory
+setwd("..")
 dir.create("altitude")
 setwd("altitude")
 getwd()
+
+# download
+alt <- grep("ZN", link, value = T)
+alt
+
 
 for(i in alt){
   download(paste0("http://www.dsr.inpe.br/topodata/data/geotiff/", i), paste0(i), 
@@ -107,15 +111,16 @@ for(j in al){
 ###-----------------------------------------------------------------------------###
 
 
-# declividade
-dec <- link[grep("SN", link)]
-dec
-
-# download
+## declividade
+# directory
 setwd("..")
 dir.create("declividade")
 setwd("declividade")
 getwd()
+
+# download
+dec <- link[grep("SN", link)]
+dec
 
 for(i in dec){
   download(paste0("http://www.dsr.inpe.br/topodata/data/geotiff/", i), paste0(i), 
@@ -144,16 +149,17 @@ for(j in de){
 
 ###-----------------------------------------------------------------------------###
 
+## aspecto
 
-# aspecto
-asp <- link[grep("ON", link)]
-asp
-
-# download
+# directory
 setwd("..")
 dir.create("aspecto")
 setwd("aspecto")
 getwd()
+
+# download
+asp <- link[grep("ON", link)]
+asp
 
 for(i in asp){
   download(paste0("http://www.dsr.inpe.br/topodata/data/geotiff/", i), paste0(i), 
@@ -181,26 +187,4 @@ for(j in as){
       unlink(paste0(j, ".zip"))}}
 
 ###-----------------------------------------------------------------------------###
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
