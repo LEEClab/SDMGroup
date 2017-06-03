@@ -4,9 +4,7 @@
 ### return_type  = 'names','names_synonyms','synonyms'
 ### classification= TRUE (return the taxonomic  classification)
 ###################################################################################
-setwd("~/GitHub/SDMGroup/work_groups/occurrence/OccurrenceRecords/animals")
-mammals=read.csv("list mammals of brasil.csv")
-sp.name=mammals$Sp.name[1:30]
+
 nomes_sinonimos_animals <- function(sp.name,return_type='names_synonyms', 
                                     taxon_rank_search = 'species',
                                     classification=TRUE){
@@ -59,11 +57,5 @@ nomes_sinonimos_animals <- function(sp.name,return_type='names_synonyms',
   if (classification==T){return(animal.classification4)}else{return(names)}
 
 }
-
-
-
-animals.names=nomes_sinonimos_animals(sp.name, classification=F, return_type='synonyms')
-
-animals.names2=nomes_sinonimos_animals(sp.name, taxon_rank_search = 'subspecies', classification=F)
 
 

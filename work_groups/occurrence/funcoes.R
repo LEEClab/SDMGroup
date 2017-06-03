@@ -135,9 +135,9 @@ return(dat.full.in)}
 save_occurrence_records <- function(dat,file.name,base='gbif',dir='allrecords'){
   ## Grava resultados totais da busca por registros
   wd.root <- getwd()
-  if( ! dir.exists(paste0(getwd(),"/occurrencerecords/")))
+  if( ! dir.exists(paste0(getwd(),"/OccurrenceRecords/")))
   {dir.create("OccurrenceRecords")}
-  setwd(paste0(getwd(),"/occurrencerecords"))
+  setwd(paste0(getwd(),"/OccurrenceRecords"))
   if(! dir.exists(paste0(getwd(),"/",base,"/")))
   {dir.create(base)}
   setwd(paste0(getwd(),"/",base))
@@ -153,6 +153,7 @@ save_occurrence_records <- function(dat,file.name,base='gbif',dir='allrecords'){
 #sep = '\t', ';'
 #encoding = "UTF-8", Latin-1
 ##################################################################################
+read_occurrence_records
 ##################################################################################
 read_occurrence_records <- function(file.name,base='splink',dir='allrecords',sep='\t',encoding="UTF-8",name.fields=''){
 
@@ -161,10 +162,11 @@ read_occurrence_records <- function(file.name,base='splink',dir='allrecords',sep
   colunas.jabot <- c("taxoncompleto","longitude","latitude", "siglacolecao","numtombo","determinador","pais","estado_prov","cidade","descrlocal","diacoleta","mescoleta","anocoleta","coletor","numcoleta","notas")	
   colunas.gbif <- c("scientificName","decimalLongitude","decimalLatitude", "collectionCode","catalogNumber","identifiedBy","country","stateProvince","county","locality","day","month","year","recordedBy","recordNumber","occurrenceRemarks")	
 
-file.csv <- paste0(getwd(),"/occurrencerecords/",base,'/',dir,'/',file.name,".txt")
+file.csv <- paste0(getwd(),"/OccurrenceRecords/",base,'/',dir,'/',file.name,".txt")
 cat('lendo: ',file.csv)  
+
 if(file.exists(file.csv)){
-  occ.csv.full = read.csv(file.csv, dec='.',sep=sep, header = TRUE,encoding= encoding )
+  occ.csv.full = read.table(file.csv, dec='.',sep=sep, header = TRUE,encoding= encoding )
   if(NROW(occ.csv.full)>0){
     if(base=='gbif')  {name.fields=colunas.gbif}
     if(base=='splink'){name.fields=colunas.splink}
@@ -217,73 +219,88 @@ colunas.gbif <- c("scientificName","decimalLongitude","decimalLatitude", "collec
 # project = projeto 
 #data_source = gbif, splink, jabot, all, mydataset
 ##################################################################################
-save_occurrence_records <- function(dat, file.name, project='',data_source='',sep=' '){
-  ## Grava resultados totais da busca por registros
-  wd.root <- getwd()
-  if( ! dir.exists(paste0(getwd(),"/occurrencerecords/")))
-  {dir.create("OccurrenceRecords")}
-  setwd(paste0(getwd(),"/occurrencerecords"))
-  if(! dir.exists(paste0(getwd(),"/",project,"/")))
-  {dir.create(project)}
-  setwd(paste0(getwd(),"/",project))
-  if( ! dir.exists(paste0(getwd(),"/",data_source,"/")))
-  {dir.create(data_source)}
-  setwd(paste0(getwd(),"/",data_source))
-  file_name_txt <- paste0(file.name,".txt")
-  write.table(dat,file_name_txt,append = FALSE, quote = TRUE, sep = sep, eol = "\n", na = "NA", dec = ".", row.names = FALSE, col.names = TRUE, qmethod = "double")
-  setwd(wd.root)
-}
+# save_occurrence_records <- function(dat, file.name, project='',data_source='',sep=' '){
+#   ## Grava resultados totais da busca por registros
+#   wd.root <- getwd()
+#   if( ! dir.exists(paste0(getwd(),"/OccurrenceRecords/")))
+#   {dir.create("OccurrenceRecords")}
+#   setwd(paste0(getwd(),"/OccurrenceRecords"))
+#   if(! dir.exists(paste0(getwd(),"/",project,"/")))
+#   {dir.create(project)}
+#   setwd(paste0(getwd(),"/",project))
+#   if( ! dir.exists(paste0(getwd(),"/",data_source,"/")))
+#   {dir.create(data_source)}
+#   setwd(paste0(getwd(),"/",data_source))
+#   file_name_txt <- paste0(file.name,".txt")
+#   write.table(dat,file_name_txt,append = FALSE, quote = TRUE, sep = sep, eol = "\n", na = "NA", dec = ".", row.names = FALSE, col.names = TRUE, qmethod = "double")
+#   setwd(wd.root)
+# }
 ##################################################################################
 
 ##################################################################################
 #carrega dados conforme processo
 ##################################################################################
 ##################################################################################
-read_occurrence_records <- function(file.name,project='',data_source='',sep='\t',encoding="UTF-8",name.fields=''){
-  file.csv <- paste0(getwd(),"/occurrencerecords/",project,'/',data_source,'/',file.name,".txt")
-  cat(' <- lendo: ',file.csv)  
-  if(file.exists(file.csv)){
-    occ.csv.full = read.csv(file.csv, dec='.',sep=sep, header = TRUE,encoding= encoding)
-    if(NROW(occ.csv.full)>0){
-      if(data_source=='gbif')  {name.fields=colunas.gbif}
-      if(data_source=='splink'){name.fields=colunas.splink}
-      if(data_source=='jabot') {name.fields=colunas.jabot} #& length(name.fields)==0
-      if(!data_source %in% c('gbif','splink','jabot')){
-        name.fields=c(colunas.splink,'source')
-        occ.csv <- {}
-        occ.csv = occ.csv.full[,name.fields]
-        cat(' (',NROW(occ.csv),' registros) ')  
-        colnames(occ.csv) <- name.fields
-        return(as.data.frame(occ.csv, stringsAsFactors = FALSE))
-      }
-      occ.csv <- {}
-      occ.csv = occ.csv.full[,name.fields]
-      occ.csv <- cbind(occ.csv,c(rep(data_source,NROW(occ.csv))))
-      colnames(occ.csv) = c(colunas.splink,'source')
-      cat(' (',NROW(occ.csv),' registros) ')  
-      
-      if(data_source=='splink'){
-        occ.csv_mun = {}
-        occ.csv_mun = occ.csv.full[,colunas.splink_mun]
-        occ.csv_mun <- occ.csv_mun[!occ.csv_mun$latitude_mun %in% NA & !occ.csv_mun$longitude_mun %in% NA,]  
-        occ.csv_mun <- cbind(occ.csv_mun,c(rep('splink.mun',NROW(occ.csv_mun))))
-        colnames(occ.csv_mun) <- c(colunas.splink,'source')
-        occ.csv <- rbind(occ.csv,occ.csv_mun)
-        cat('(+',NROW(occ.csv_mun),' registros coordenadas município)') }
-      return(as.data.frame(occ.csv,stringsAsFactors = FALSE))}
-    else{cat(' # ',' arquivo vazio!# ')}
-    
-  }
-  else{cat(' # ',' não encontrado!# ')}
-}
-
+# read_occurrence_records <- function(file.name,project='',data_source='',sep='\t',encoding="UTF-8",name.fields=''){
+#   file.csv <- paste0(getwd(),"/OccurrenceRecords/",project,'/',data_source,'/',file.name,".txt")
+#   cat(' <- lendo: ',file.csv)  
+#   if(file.exists(file.csv)){
+#     occ.csv.full = read.csv(file.csv, dec='.',sep=sep, header = TRUE,encoding= encoding)
+#     if(NROW(occ.csv.full)>0){
+#       if(data_source=='gbif')  {name.fields=colunas.gbif}
+#       if(data_source=='splink'){name.fields=colunas.splink}
+#       if(data_source=='jabot') {name.fields=colunas.jabot} #& length(name.fields)==0
+#       if(!data_source %in% c('gbif','splink','jabot')){
+#         name.fields=c(colunas.splink,'source')
+#         occ.csv <- {}
+#         occ.csv = occ.csv.full[,name.fields]
+#         cat(' (',NROW(occ.csv),' registros) ')  
+#         colnames(occ.csv) <- name.fields
+#         return(as.data.frame(occ.csv, stringsAsFactors = FALSE))
+#       }
+#       occ.csv <- {}
+#       occ.csv = occ.csv.full[,name.fields]
+#       occ.csv <- cbind(occ.csv,c(rep(data_source,NROW(occ.csv))))
+#       colnames(occ.csv) = c(colunas.splink,'source')
+#       cat(' (',NROW(occ.csv),' registros) ')  
+#       
+#       if(data_source=='splink'){
+#         occ.csv_mun = {}
+#         occ.csv_mun = occ.csv.full[,colunas.splink_mun]
+#         occ.csv_mun <- occ.csv_mun[!occ.csv_mun$latitude_mun %in% NA & !occ.csv_mun$longitude_mun %in% NA,]  
+#         occ.csv_mun <- cbind(occ.csv_mun,c(rep('splink.mun',NROW(occ.csv_mun))))
+#         colnames(occ.csv_mun) <- c(colunas.splink,'source')
+#         occ.csv <- rbind(occ.csv,occ.csv_mun)
+#         cat('(+',NROW(occ.csv_mun),' registros coordenadas município)') }
+#       return(as.data.frame(occ.csv,stringsAsFactors = FALSE))}
+#     else{cat(' # ',' arquivo vazio!# ')}
+#     
+#   }
+#   else{cat(' # ',' não encontrado!# ')}
+# }
 
 
 ##### functions  cleaning data with geographic information
 
 
 info_geografica<-function(ruta_info_geo){
+  
+  require(maps)
+  require(maptools)
+  require(raster)
+  require(rgdal)
+  
+  
+  wdroot<-getwd()
   setwd(ruta_info_geo) 
+  world<<-map("world")
+  paises<<-readShapePoly("gadm28.shp")
+  getData("GADM", level = 0, country="") # pais
+  plot(br.0, col = "gray80", axes = T)
+  br.0@data
+  
+  BR.pol <- readShapePoly("BR.shp")
+  NT.pol <- readShapePoly("neotropical.shp")
   paises<<-readShapePoly("PAISES_SA_WGS84.shp")
   estado<<-readShapePoly("BRA_limite_estado.shp")
   nombres.est<<-as.character(estado@data$NAME_1)
@@ -294,7 +311,7 @@ info_geografica<-function(ruta_info_geo){
   Encoding(nombres.mun)<<-"latin1"
   mpios@data$NAME_2<<-nombres.mun
   sedes<<-readShapePoints("sedes_municipais.shp")
-  
+  setwd(wdroot)
 }
 
 
@@ -365,7 +382,7 @@ corroboracion_dep=function(datos,estado){
         jm=c(jm,j)}## datos con igual estado 
     }
     
-    diferente=as.data.frame(cbind(cntrm,as.character(datos@data$stateprovince)))[im,]
+    diferente=as.data.frame(cbind(cntrm1,as.character(datos@data$stateprovince)))[im,]
     
     #CompareDpto=cbind(im,diferente)
     #MunCorrecto=cbind(cntrm,as.character(datos@data$state))[jm,]
@@ -416,5 +433,7 @@ corroboracion=function(datos,mun){
   X[[3]]=cntrm
   return(X)
 }
+
+
 
 
