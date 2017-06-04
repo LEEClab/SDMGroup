@@ -153,7 +153,6 @@ save_occurrence_records <- function(dat,file.name,base='gbif',dir='allrecords'){
 #sep = '\t', ';'
 #encoding = "UTF-8", Latin-1
 ##################################################################################
-read_occurrence_records
 ##################################################################################
 read_occurrence_records <- function(file.name,base='splink',dir='allrecords',sep='\t',encoding="UTF-8",name.fields=''){
 
@@ -282,48 +281,81 @@ colunas.gbif <- c("scientificName","decimalLongitude","decimalLatitude", "collec
 
 ##### functions  cleaning data with geographic information
 
-
-info_geografica<-function(ruta_info_geo){
+download.shp=function(all.records,level=2){
   
   require(maps)
   require(maptools)
   require(raster)
   require(rgdal)
+  require(rgeos)
+  require(spatialEco)
   
   
-  wdroot<-getwd()
-  setwd(ruta_info_geo) 
-  world<<-map("world")
-  paises<<-readShapePoly("gadm28.shp")
-  getData("GADM", level = 0, country="") # pais
-  plot(br.0, col = "gray80", axes = T)
-  br.0@data
+  co=unique(all.records$country)
+  data(wrld_simpl)
+  codes=wrld_simpl@data[,1:5]
+  codes_use=as.character(codes$ISO3[which(codes$NAME %in% co)])
   
-  BR.pol <- readShapePoly("BR.shp")
-  NT.pol <- readShapePoly("neotropical.shp")
-  paises<<-readShapePoly("PAISES_SA_WGS84.shp")
-  estado<<-readShapePoly("BRA_limite_estado.shp")
-  nombres.est<<-as.character(estado@data$NAME_1)
-  Encoding(nombres.est)<<-"latin1"
-  estado@data$NAME_1<<-nombres.est
-  mpios<<-readShapePoly("BRA_limite_mun3.shp")
-  nombres.mun<<-as.character(mpios@data$NAME_2)
-  Encoding(nombres.mun)<<-"latin1"
-  mpios@data$NAME_2<<-nombres.mun
-  sedes<<-readShapePoints("sedes_municipais.shp")
-  setwd(wdroot)
+  if (length(codes_use)>0){
+    cont.0 <- getData("GADM", country = codes_use[1], level = level)
+    #url="http://biogeo.ucdavis.edu/data/gadm2.8/rds/"
+    for (i in 2:length(codes_use)){
+      cont=codes_use[i]
+      
+      cont.1 <- getData("GADM", country = cont, level = level) 
+      
+      cont.0=rbind(cont.0,cont.1) #join all the shps for contries in the dataset
+      
+    }
+  }
+  return(cont.0)
 }
 
+info_geografica<-function(all.records){
+  init=download.shp(all.records, level=2)
+  HASC_0=HASC_1=HASC_2=rep(NA,nrow(init))
+  for (i in 1:nrow(init)){
+    print(i)
+    code=init$HASC_2[i]
+    HASC_S=unlist(strsplit(code,"[.]"))
+    HASC_0[i]=HASC_S[1]
+    HASC_1[i]=HASC_S[2]
+    HASC_2[i]=HASC_S[3]
+  }
+  init@data=cbind(init@data,HASC_0,HASC_1,HASC_2)
+  
+  
+  background.pol<<-download.shp(all.records, level=0)
+  
+  paises<<-estado<<-mpios<<-init
+  
+  #world cities
+  data(world.cities)
+  sedes<<-world.cities
+  
+  
+  #produce centroids
+  cents <- gCentroid(init,byid=T)
+  
+  cents0<-as.data.frame(coordinates(cents))
+  cents1<<-SpatialPointsDataFrame(cents,data=cents0)
+  b=over(init, cents1)
+  centroid=init
+  centroid@data$Longmuncen<-b$x
+  centroid@data$Latmuncent<-b$y
+}
 
 
 ### Revisar "overlay" de los registros con el "Shape" de departamento
 corroboracion_pais=function(datos,mun){
+  CRS.new=mun@proj4string
   
   coordinates(datos)=~longitude+latitude
+  proj4string(datos) <- CRS.new
   #ovm=overlay(datos,mun)
   ovm=over(datos,mun)
   #cntrm=as.character(mun@data$COUNTRY[ovm$PAIS]) #esta 
-  cntrm=as.character(ovm$PAIS)
+  cntrm=as.character(ovm$NAME_0)
   if(length(which(!is.na(datos@data$state)))>0){
     im=1:nrow(datos@data) # linea
     tb=as.character(datos@data$country)# fala
@@ -357,9 +389,11 @@ corroboracion_pais=function(datos,mun){
 }
 
 corroboracion_dep=function(datos,estado){
+  CRS.new=estado@proj4string
   
   coordinates(datos)=~longitude+latitude
-  #ovm=overlay(datos,estado)
+  proj4string(datos) <- CRS.new
+  
   ovm=over(datos,estado)
   #cntrm=as.character(estado@data$HASC_1[ovm])
   cntrm1=as.character(ovm$HASC_1)
@@ -369,7 +403,7 @@ corroboracion_dep=function(datos,estado){
   if(length(which(!is.na(datos@data$stateprovince)))>0){
     im=jm=NULL
     for (j in 1:length(cntrm1)){
-      print(j)
+      #print(j)
       name.c=cntrm1[j]
       name.c2=cntrm2[j]
       
@@ -402,7 +436,10 @@ corroboracion_dep=function(datos,estado){
 }
 
 corroboracion=function(datos,mun){
+  CRS.new=mun@proj4string
+  
   coordinates(datos)=~longitude+latitude
+  proj4string(datos) <- CRS.new
   #ovm=overlay(datos,mun)
   ovm=over(datos,mun)
   #cntrm=as.character(mun@data$NAME_2[ovm])
@@ -412,7 +449,7 @@ corroboracion=function(datos,mun){
   if(length(which(!is.na(datos@data$county)))>0){
     mm=op=NULL
     for (j in 1:length(cntrm)){
-      print(j)
+      #print(j)
       name.c=cntrm[j]
       name.dat=as.character(datos@data$county)[j]
       Encoding(name.dat)="latin1"
