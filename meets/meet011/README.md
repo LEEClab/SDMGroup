@@ -2,7 +2,7 @@
 
 ## Resumo das reuniões
 
-### Dia 010 - 25/05/2017
+### Dia 011 - 25/05/2017
 
 ### Resumo
 - Apresentação do Thadeu: "Podemos modelar biomas com ENMs?"
