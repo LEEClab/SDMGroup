@@ -10,4 +10,4 @@
 
 ### Leituras
 
-- 
+- Mod, H. K., Scherrer, D., Luoto, M., & Guisan, A. (2016). What we use is not what we know: Environmental predictors in plant distribution models.Journal of Vegetation Science, 27, 1308–1322.
