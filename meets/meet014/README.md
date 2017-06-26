@@ -2,7 +2,7 @@
 
 ### Resumo
 
-- [Apresentação]() do Thadeu sobre métricas de avaliação dos modelos
+- [Apresentação](https://github.com/LEEClab/SDMGroup/blob/master/meets/meet014/avaliacao_enms.pdf) do Thadeu sobre métricas de avaliação dos modelos
 
 - Discussão sobre o uso de *ensemble* por frequência e por média ponderada
 
