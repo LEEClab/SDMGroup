@@ -23,14 +23,14 @@
 
 ---
 
-<img src="" width="100" height="100">
+<img src="https://avatars2.githubusercontent.com/u/19820073?s=400&u=d8acd594176a1c15e6c52ec5a0da65065f53b7e5&v=4" width="100" height="100">
 - Bruno Garcia Luize  
 
-  **Formação**: 
+  **Formação**: Ecólogo - UNESP-Rio Claro; Mestre em Ecologia - INPA; Doutorando em Ecologia e Biodiversidade - UNESP-Rio Claro
   
-  **Interesses**: 
+  **Interesses**: Ecologia de florestas tropicais, Biogeografia, Áreas úmidas, Distribuição de espécies
   
-  **E-mail**: 
+  **E-mail**: luize.bg@gmail.com
 
 ---
 
