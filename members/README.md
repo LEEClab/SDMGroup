@@ -188,13 +188,13 @@
 ---
 
 <img src="" width="100" height="100">
-- Thadeu Sobral 
+- Thadeu Sobral de Souza 
 
-  **Formação**: 
+  **Formação**: Biologia - Universidade Católica de Santos. Mestrado e Doutorado em Ecologia pela Unicamp. Pós-doc pela Unesp Rio Claro
   
-  **Interesses**: 
+  **Interesses**: Macroecologia, padrão de riqueza de espécies, efeito do clima e da paisagem sobre a biodiversidade, biogeografia histórica
   
-  **E-mail**: 
+  **E-mail**: thadeusobral@gmail.com
 
 ---
 
