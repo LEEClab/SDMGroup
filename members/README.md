@@ -187,7 +187,7 @@
 
 ---
 
-<img src="" width="100" height="100">
+<img src="https://raw.githubusercontent.com/LEEClab/SDMGroup/1f16bcf88f3713ccd39ddf9c3dd525f0e28ac333/members/Eu.jpg" width="100" height="100">
 - Thadeu Sobral de Souza 
 
   **Formação**: Biologia - Universidade Católica de Santos. Mestrado e Doutorado em Ecologia pela Unicamp. Pós-doc pela Unesp Rio Claro
